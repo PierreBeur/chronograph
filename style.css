@@ -23,6 +23,13 @@ body {
   height: 100%;
 }
 
+/* Background */
+
+#background {
+  object-fit: cover;
+  opacity: 0;
+}
+
 /* Clock */
 
 #clock {

@@ -21,3 +21,19 @@ function updateDate() {
 }
 updateDate();
 setInterval(updateDate, 1000);
+
+// Background
+
+// Fade in on load
+const opacityMax = 0.8;
+const background = document.querySelector('#background');
+background.addEventListener('load', () => {
+  background.animate([
+    {opacity: 0},
+    {opacity: opacityMax}
+  ], 500);
+  background.style.opacity = opacityMax;
+});
+// Set source
+const collection = 1053828;
+background.src = `https://source.unsplash.com/collection/${collection}/${screen.width}x${screen.height}`;
