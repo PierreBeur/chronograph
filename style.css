@@ -37,8 +37,6 @@ body {
 #main {
   position: relative;
   flex-grow: 1;
-  display: flex;
-  flex-direction: column;
 }
 
 /* Background */
@@ -52,7 +50,6 @@ body {
 /* Clock */
 
 #clock {
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -68,6 +65,8 @@ body {
 /* Attribution */
 
 #attribution {
+  position: absolute;
+  bottom: 0;
   padding: 1rem;
   font-family: 'Raleway', Arial, Helvetica, sans-serif;
 }
