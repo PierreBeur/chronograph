@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100&display=block');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,300&display=block');
 
 * {
   box-sizing: border-box;
@@ -8,6 +9,10 @@
   color: white;
   font-family: 'Roboto Mono', monospace;
   user-select: none;
+}
+
+a {
+  color: inherit;
 }
 
 body {
@@ -53,4 +58,11 @@ body {
 
 #date {
   font-size: 3rem;
+}
+
+/* Attribution */
+
+#attribution {
+  padding: 1rem;
+  font-family: 'Raleway', Arial, Helvetica, sans-serif;
 }

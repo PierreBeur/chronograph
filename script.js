@@ -34,15 +34,27 @@ background.addEventListener('load', () => {
   ], 500);
   background.style.opacity = opacityMax;
 });
-// Fetch background
+
+// API parameters
 const collection = 1053828;
 const url = 'https://chronometer-api.deno.dev/photos/random?';
 const params = new URLSearchParams([
   ['collections', collection]
 ]);
+
+// Attribution
+const utm = '?utm_source=Chronometer&utm_medium=referral&utm_campaign=api-credit';
+const attributionPhoto = document.querySelector('#attribution-photo');
+const attributionUser = document.querySelector('#attribution-user');
+const attributionUnsplash = document.querySelector('#attribution-unsplash');
+
 fetch(url + params)
   .then(response => response.json())
   .then(data => {
     background.src = data.urls.raw + `&w=${screen.width}&h=${screen.height}&fit=crop`;
+    attributionPhoto.href = data.links.html + utm;
+    attributionUser.href = data.user.links.html + utm;
+    attributionUser.textContent = data.user.name;
+    attributionUnsplash.href = 'https://unsplash.com/' + utm;
   })
   .catch(error => console.error(error));
