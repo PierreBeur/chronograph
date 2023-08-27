@@ -34,6 +34,15 @@ background.addEventListener('load', () => {
   ], 500);
   background.style.opacity = opacityMax;
 });
-// Set source
+// Fetch background
 const collection = 1053828;
-background.src = `https://source.unsplash.com/collection/${collection}/${screen.width}x${screen.height}`;
+const url = 'https://chronometer-api.deno.dev/photos/random?';
+const params = new URLSearchParams([
+  ['collections', collection]
+]);
+fetch(url + params)
+  .then(response => response.json())
+  .then(data => {
+    background.src = data.urls.raw + `&w=${screen.width}&h=${screen.height}&fit=crop`;
+  })
+  .catch(error => console.error(error));
