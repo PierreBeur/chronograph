@@ -54,10 +54,10 @@ function setAttributionLocation(locationData) {
   const name = locationData.name;
   attributionLocation.textContent = name;
   attributionLocation.href = name ? 'https://www.google.com/search?q=' + encodeURIComponent(name) : '';
-  const position = [locationData.position.latitude, locationData.position.longitude];
-  const positionValid = position[0] && position[1];
-  attributionLocationPosition.href = positionValid ? 'https://www.google.com/maps/place/' + position[0] + '%2C' + position[1] : '';
-  attributionLocationPosition.classList.toggle('hidden', !positionValid);
+  const [latitude, longitude] = [locationData.position.latitude, locationData.position.longitude];
+  const validPosition = latitude && longitude;
+  attributionLocationPosition.href = validPosition ? `https://www.google.com/maps/place/${latitude}%2C${longitude}` : '';
+  attributionLocationPosition.classList.toggle('hidden', !validPosition);
 }
 
 fetch(url + params)
