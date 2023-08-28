@@ -48,13 +48,16 @@ const attributionPhoto = document.querySelector('#attribution-photo');
 const attributionUser = document.querySelector('#attribution-user');
 const attributionUnsplash = document.querySelector('#attribution-unsplash');
 const attributionLocation = document.querySelector('#attribution-location');
+const attributionLocationPosition = document.querySelector('#attribution-location-position');
 
 function setAttributionLocation(locationData) {
   const name = locationData.name;
+  attributionLocation.textContent = name;
+  attributionLocation.href = name ? 'https://www.google.com/search?q=' + encodeURIComponent(name) : '';
   const position = [locationData.position.latitude, locationData.position.longitude];
-  const text = name || ((position[0] && position[1]) ? position[0] + ', ' + position[1] : null);
-  attributionLocation.textContent = text;
-  attributionLocation.href = text ? 'https://www.google.com/search?q=' + encodeURIComponent(text) : '';
+  const positionValid = position[0] && position[1];
+  attributionLocationPosition.href = positionValid ? 'https://www.google.com/maps/place/' + position[0] + '%2C' + position[1] : '';
+  attributionLocationPosition.classList.toggle('hidden', !positionValid);
 }
 
 fetch(url + params)
