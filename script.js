@@ -47,6 +47,7 @@ const utm = '?utm_source=Chronometer&utm_medium=referral&utm_campaign=api-credit
 const attributionPhoto = document.querySelector('#attribution-photo');
 const attributionUser = document.querySelector('#attribution-user');
 const attributionUnsplash = document.querySelector('#attribution-unsplash');
+const attributionLocation = document.querySelector('#attribution-location');
 
 fetch(url + params)
   .then(response => response.json())
@@ -56,5 +57,6 @@ fetch(url + params)
     attributionUser.href = data.user.links.html + utm;
     attributionUser.textContent = data.user.name;
     attributionUnsplash.href = 'https://unsplash.com/' + utm;
+    attributionLocation.textContent = data.location.name;
   })
   .catch(error => console.error(error));

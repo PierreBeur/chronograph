@@ -69,11 +69,18 @@ body {
   font-size: 3rem;
 }
 
-/* Attribution */
+/* Footer */
 
-#attribution {
+#footer {
   position: absolute;
   bottom: 0;
+  width: 100%;
   padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   font-family: 'Raleway', Arial, Helvetica, sans-serif;
+}
+
+#attribution-location {
+  text-align: right;
 }
