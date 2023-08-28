@@ -51,7 +51,7 @@ const attributionUnsplash = document.querySelector('#attribution-unsplash');
 fetch(url + params)
   .then(response => response.json())
   .then(data => {
-    background.src = data.urls.raw + `&w=${screen.width}&h=${window.innerHeight}&fit=crop`;
+    background.src = data.urls.raw + `&w=${screen.width}&h=${screen.height}&fit=crop`;
     attributionPhoto.href = data.links.html + utm;
     attributionUser.href = data.user.links.html + utm;
     attributionUser.textContent = data.user.name;
