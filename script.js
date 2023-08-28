@@ -49,6 +49,14 @@ const attributionUser = document.querySelector('#attribution-user');
 const attributionUnsplash = document.querySelector('#attribution-unsplash');
 const attributionLocation = document.querySelector('#attribution-location');
 
+function setAttributionLocation(locationData) {
+  const name = locationData.name;
+  const position = [locationData.position.latitude, locationData.position.longitude];
+  const text = name || ((position[0] && position[1]) ? position[0] + ', ' + position[1] : null);
+  attributionLocation.textContent = text;
+  attributionLocation.href = text ? 'https://www.google.com/search?q=' + encodeURIComponent(text) : '';
+}
+
 fetch(url + params)
   .then(response => response.json())
   .then(data => {
@@ -57,6 +65,6 @@ fetch(url + params)
     attributionUser.href = data.user.links.html + utm;
     attributionUser.textContent = data.user.name;
     attributionUnsplash.href = 'https://unsplash.com/' + utm;
-    attributionLocation.textContent = data.location.name;
+    setAttributionLocation(data.location);
   })
   .catch(error => console.error(error));
