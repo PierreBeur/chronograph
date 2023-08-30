@@ -71,3 +71,17 @@ fetch(url + params)
     setAttributionLocation(data.location);
   })
   .catch(error => console.error(error));
+
+// Menu
+
+const menuWrapper = document.querySelector('#menu-wrapper');
+const menuButton = document.querySelector('#menu-button');
+function toggleMenu() {
+  menuWrapper.classList.toggle('menu-open');
+}
+// Toggle menu when menu button clicked
+menuButton.addEventListener('click', toggleMenu);
+// Toggle menu when escape key pressed
+document.addEventListener('keydown', (event) => {
+  if (event.key == 'Escape') toggleMenu();
+});
