@@ -24,6 +24,12 @@ setInterval(updateDate, 1000);
 
 // Background
 
+const brightness = 0.8;
+const transitionDuration = 500;
+const background = document.querySelector('#background');
+background.style.transition = `opacity ${transitionDuration}ms linear`;
+background.style.filter = `brightness(${brightness})`;
+
 function load(src) {
   return new Promise((resolve, reject) => {
     const image = new Image();
@@ -33,17 +39,10 @@ function load(src) {
   });
 }
 
-// Fade in on load
-const opacityMax = 0.8;
-const background = document.querySelector('#background');
 async function setBackground(src) {
   await load(src);
   background.src = src;
-  background.animate([
-    {opacity: 0},
-    {opacity: opacityMax}
-  ], 500);
-  background.style.opacity = opacityMax;
+  background.classList.add('opaque');
 }
 
 // API parameters

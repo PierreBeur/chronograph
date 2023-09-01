@@ -47,6 +47,10 @@ body {
   display: none !important;
 }
 
+.opaque {
+  opacity: 1 !important;
+}
+
 /* Menu */
 
 #menu-wrapper {
