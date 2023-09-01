@@ -63,16 +63,25 @@ body {
 }
 
 #menu-wrapper.menu-open {
-  width: 150px;
+  width: 180px;
   opacity: 1;
 }
 
-#menu {
-  margin: 1rem;
+#menu-title {
+  align-items: center;
+  font-size: 1.5rem;
+  line-height: 28px;
+}
+
+#menu, #menu-title {
+  padding: 1rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
   font-family: 'Baloo 2';
+}
+
+#menu {
+  flex-grow: 1;
 }
 
 #github {
