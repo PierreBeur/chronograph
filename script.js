@@ -24,16 +24,27 @@ setInterval(updateDate, 1000);
 
 // Background
 
+function load(src) {
+  return new Promise((resolve, reject) => {
+    const image = new Image();
+    image.addEventListener('load', resolve);
+    image.addEventListener('error', reject);
+    image.src = src;
+  });
+}
+
 // Fade in on load
 const opacityMax = 0.8;
 const background = document.querySelector('#background');
-background.addEventListener('load', () => {
+async function setBackground(src) {
+  await load(src);
+  background.src = src;
   background.animate([
     {opacity: 0},
     {opacity: opacityMax}
   ], 500);
   background.style.opacity = opacityMax;
-});
+}
 
 // API parameters
 const collection = 1053828;
@@ -63,7 +74,7 @@ function setAttributionLocation(locationData) {
 fetch(url + params)
   .then(response => response.json())
   .then(data => {
-    background.src = data.urls.raw + `&w=${screen.width}&h=${screen.height}&fit=crop`;
+    setBackground(data.urls.raw + `&w=${screen.width}&h=${screen.height}&fit=crop`);
     attributionPhoto.href = data.links.html + utm;
     attributionUser.href = data.user.links.html + utm;
     attributionUser.textContent = data.user.name;
