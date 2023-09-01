@@ -70,17 +70,20 @@ function setAttributionLocation(locationData) {
   attributionLocationPosition.classList.toggle('hidden', !validPosition);
 }
 
-fetch(url + params)
-  .then(response => response.json())
-  .then(data => {
-    setBackground(data.urls.raw + `&w=${screen.width}&h=${screen.height}&fit=crop`);
-    attributionPhoto.href = data.links.html + utm;
-    attributionUser.href = data.user.links.html + utm;
-    attributionUser.textContent = data.user.name;
-    attributionUnsplash.href = 'https://unsplash.com/' + utm;
-    setAttributionLocation(data.location);
-  })
-  .catch(error => console.error(error));
+function fetchBackground() {
+  fetch(url + params)
+    .then(response => response.json())
+    .then(data => {
+      setBackground(data.urls.raw + `&w=${screen.width}&h=${screen.height}&fit=crop`);
+      attributionPhoto.href = data.links.html + utm;
+      attributionUser.href = data.user.links.html + utm;
+      attributionUser.textContent = data.user.name;
+      attributionUnsplash.href = 'https://unsplash.com/' + utm;
+      setAttributionLocation(data.location);
+    })
+    .catch(error => console.error(error));
+}
+fetchBackground();
 
 // Menu
 
