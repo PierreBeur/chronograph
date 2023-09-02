@@ -95,6 +95,13 @@ function fetchBackground() {
     .catch(error => console.error(error));
 }
 fetchBackground();
+// Fetch new background when refresh button clicked
+const refreshButton = document.querySelector('#refresh-button');
+refreshButton.addEventListener('click', fetchBackground);
+// Fetch new background when space key pressed
+document.addEventListener('keydown', (event) => {
+  if (event.key == ' ') fetchBackground();
+});
 
 // Menu
 
