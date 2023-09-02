@@ -24,25 +24,36 @@ setInterval(updateDate, 1000);
 
 // Background
 
-const brightness = 0.8;
-const transitionDuration = 500;
 const background = document.querySelector('#background');
-background.style.transition = `opacity ${transitionDuration}ms linear`;
-background.style.filter = `brightness(${brightness})`;
+const backgrounds = background.querySelectorAll('.background');
 
-function load(src) {
-  return new Promise((resolve, reject) => {
-    const image = new Image();
-    image.addEventListener('load', resolve);
-    image.addEventListener('error', reject);
-    image.src = src;
-  });
+function setBrightness(brightness) {
+  background.style.setProperty('--brightness', brightness);
 }
 
+function setTransitionDuration(transitionDuration) {
+  background.style.setProperty('--transition-duration', transitionDuration + 'ms');
+}
+
+const brightness = 0.8;
+const transitionDuration = 2000;
+setBrightness(brightness);
+setTransitionDuration(transitionDuration);
+
+let state = true;
 async function setBackground(src) {
-  await load(src);
-  background.src = src;
-  background.classList.add('opaque');
+  const backgroundCurr = backgrounds[state ? 1 : 0];
+  const backgroundNext = backgrounds[state ? 0 : 1];
+  backgroundNext.onload = () => {
+    backgroundNext.classList.add('active');
+    backgroundCurr.classList.remove('active');
+    backgroundNext.classList.add('opaque');
+    setTimeout(() => {
+      backgroundCurr.classList.remove('opaque');
+    }, transitionDuration);
+    state = !state;
+  }
+  backgroundNext.src = src;
 }
 
 // API parameters

@@ -47,10 +47,6 @@ body {
   display: none !important;
 }
 
-.opaque {
-  opacity: 1 !important;
-}
-
 /* Menu */
 
 #menu-wrapper {
@@ -105,14 +101,30 @@ body {
 /* Background */
 
 #background {
+  --transition-duration: 2000ms;
+  --brightness: 0.8;
+}
+
+.background {
   position: absolute;
+  z-index: -1;
   top: 50%;
   left: 50%;
   width: 100vw;
   height: 100vh;
   transform: translate(-50%, -50%);
   object-fit: cover;
+  filter: brightness(var(--brightness));
   opacity: 0;
+}
+
+.background.active {
+  z-index: 0;
+  transition: opacity var(--transition-duration) cubic-bezier(.28,.83,.67,1);
+}
+
+.background.opaque {
+  opacity: 1;
 }
 
 /* Menu Button */
