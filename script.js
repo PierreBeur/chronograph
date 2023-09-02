@@ -35,23 +35,15 @@ function setTransitionDuration(transitionDuration) {
   background.style.setProperty('--transition-duration', transitionDuration + 'ms');
 }
 
-const brightness = 0.8;
-const transitionDuration = 2000;
-setBrightness(brightness);
-setTransitionDuration(transitionDuration);
-
-let state = true;
+let active = 0;
 async function setBackground(src) {
-  const backgroundCurr = backgrounds[state ? 1 : 0];
-  const backgroundNext = backgrounds[state ? 0 : 1];
+  const backgroundCurr = backgrounds[active ? 0 : 1];
+  const backgroundNext = backgrounds[active ? 1 : 0];
   backgroundNext.onload = () => {
+    backgroundNext.classList.add('transition');
     backgroundNext.classList.add('active');
     backgroundCurr.classList.remove('active');
-    backgroundNext.classList.add('opaque');
-    setTimeout(() => {
-      backgroundCurr.classList.remove('opaque');
-    }, transitionDuration);
-    state = !state;
+    active = active ? 0 : 1;
   }
   backgroundNext.src = src;
 }

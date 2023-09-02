@@ -103,6 +103,7 @@ body {
 #background {
   --transition-duration: 2000ms;
   --brightness: 0.8;
+  filter: brightness(var(--brightness));
 }
 
 .background {
@@ -114,16 +115,15 @@ body {
   height: 100vh;
   transform: translate(-50%, -50%);
   object-fit: cover;
-  filter: brightness(var(--brightness));
   opacity: 0;
+}
+
+.background.transition {
+  transition: opacity var(--transition-duration) cubic-bezier(.28,.83,.67,1);
 }
 
 .background.active {
   z-index: 0;
-  transition: opacity var(--transition-duration) cubic-bezier(.28,.83,.67,1);
-}
-
-.background.opaque {
   opacity: 1;
 }
 
