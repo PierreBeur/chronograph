@@ -27,25 +27,24 @@ setInterval(updateDate, 1000);
 const background = document.querySelector('#background');
 const backgrounds = background.querySelectorAll('.background');
 
+backgrounds.forEach((background, i) => {
+  background.addEventListener('load', () => {
+    backgrounds[i ? 0 : 1].classList.remove('active');
+    background.classList.add('transition');
+    background.classList.add('active');
+  });
+});
+
+function setBackground(src) {
+  background.querySelector(':not(.active)').src = src;
+}
+
 function setBrightness(brightness) {
   background.style.setProperty('--brightness', brightness);
 }
 
 function setTransitionDuration(transitionDuration) {
   background.style.setProperty('--transition-duration', transitionDuration + 'ms');
-}
-
-let active = 0;
-async function setBackground(src) {
-  const backgroundCurr = backgrounds[active ? 0 : 1];
-  const backgroundNext = backgrounds[active ? 1 : 0];
-  backgroundNext.onload = () => {
-    backgroundNext.classList.add('transition');
-    backgroundNext.classList.add('active');
-    backgroundCurr.classList.remove('active');
-    active = active ? 0 : 1;
-  }
-  backgroundNext.src = src;
 }
 
 // API parameters
