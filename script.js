@@ -22,11 +22,15 @@ function updateDate() {
 updateDate();
 setInterval(updateDate, 1000);
 
+
 // Photo
+
+// Photo view
 
 const photoViewContainer = document.querySelector('#photo-view-container');
 const photoViews = photoViewContainer.querySelectorAll('.photo-view');
 
+// Initialize photo views
 photoViews.forEach((photoView, i) => {
   photoView.addEventListener('load', () => {
     photoViews[i ? 0 : 1].classList.remove('active');
@@ -107,6 +111,7 @@ refreshButton.addEventListener('click', fetchPhoto);
 document.addEventListener('keydown', (event) => {
   if (event.key == ' ') fetchPhoto();
 });
+
 
 // Menu
 
