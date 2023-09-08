@@ -54,22 +54,22 @@ const params = new URLSearchParams([
   ['collections', collection]
 ]);
 
-// Attribution
+// Photo attribution and location
 const utm = '?utm_source=Chronometer&utm_medium=referral&utm_campaign=api-credit';
 const attributionPhoto = document.querySelector('#attribution-photo');
 const attributionUser = document.querySelector('#attribution-user');
 const attributionUnsplash = document.querySelector('#attribution-unsplash');
-const attributionLocation = document.querySelector('#attribution-location');
-const attributionLocationPosition = document.querySelector('#attribution-location-position');
+const photoLocation = document.querySelector('#photo-location');
+const photoLocationPosition = document.querySelector('#photo-location-position');
 
-function setAttributionLocation(locationData) {
+function setPhotoLocation(locationData) {
   const name = locationData.name;
-  attributionLocation.textContent = name;
-  attributionLocation.href = name ? 'https://www.google.com/search?q=' + encodeURIComponent(name) : '';
+  photoLocation.textContent = name;
+  photoLocation.href = name ? 'https://www.google.com/search?q=' + encodeURIComponent(name) : '';
   const [latitude, longitude] = [locationData.position.latitude, locationData.position.longitude];
   const validPosition = latitude && longitude;
-  attributionLocationPosition.href = validPosition ? `https://www.google.com/maps/place/${latitude}%2C${longitude}` : '';
-  attributionLocationPosition.classList.toggle('hidden', !validPosition);
+  photoLocationPosition.href = validPosition ? `https://www.google.com/maps/place/${latitude}%2C${longitude}` : '';
+  photoLocationPosition.classList.toggle('hidden', !validPosition);
 }
 
 function fetchPhoto() {
@@ -93,7 +93,7 @@ function fetchPhoto() {
       attributionUser.href = data.userLink + utm;
       attributionUser.textContent = data.userName;
       attributionUnsplash.href = 'https://unsplash.com/' + utm;
-      setAttributionLocation(data.location);
+      setPhotoLocation(data.location);
     })
     .catch(error => console.error(error));
 }

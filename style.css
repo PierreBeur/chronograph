@@ -170,24 +170,24 @@ body {
   align-items: end;
 }
 
-#attribution-location-wrapper {
+#photo-location-wrapper {
   display: flex;
   justify-content: flex-end;
   align-items: end;
 }
 
-#attribution-location {
+#photo-location {
   text-align: right;
 }
 
-#attribution-location-position {
+#photo-location-position {
   display: flex;
   width: 1.5rem;
   padding-bottom: .5rem;
   text-decoration: none;
 }
 
-#attribution-location-position .material-symbols-outlined {
+#photo-location-position .material-symbols-outlined {
   font-size: 2rem;
   font-variation-settings:
     'FILL' 0,
