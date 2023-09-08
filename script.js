@@ -77,8 +77,8 @@ function fetchPhoto() {
     .then(response => response.json())
     .then(data => {
       return {
-        photoSrc: data.urls.raw,
-        photoLink: data.links.html,
+        src: data.urls.raw,
+        link: data.links.html,
         userLink: data.user.links.html,
         userName: data.user.name,
         location: {
@@ -87,13 +87,13 @@ function fetchPhoto() {
         }
       };
     })
-    .then(data => {
-      setPhotoView(data.photoSrc + `&w=${screen.width}&h=${screen.height}&fit=crop`);
-      attributionPhoto.href = data.photoLink + utm;
-      attributionUser.href = data.userLink + utm;
-      attributionUser.textContent = data.userName;
+    .then(photo => {
+      setPhotoView(photo.src + `&w=${screen.width}&h=${screen.height}&fit=crop`);
+      attributionPhoto.href = photo.link + utm;
+      attributionUser.href = photo.userLink + utm;
+      attributionUser.textContent = photo.userName;
       attributionUnsplash.href = 'https://unsplash.com/' + utm;
-      setPhotoLocation(data.location);
+      setPhotoLocation(photo.location);
     })
     .catch(error => console.error(error));
 }
