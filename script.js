@@ -56,10 +56,10 @@ const utm = '?utm_source=Chronometer&utm_medium=referral&utm_campaign=api-credit
 const attributionPhoto = document.querySelector('#attribution-photo');
 const attributionUser = document.querySelector('#attribution-user');
 const attributionUnsplash = document.querySelector('#attribution-unsplash');
-function setAttribution(photo) {
-  attributionPhoto.href = photo.link + utm;
-  attributionUser.href = photo.userLink + utm;
-  attributionUser.textContent = photo.userName;
+function setAttribution(attribution) {
+  attributionPhoto.href = attribution.link + utm;
+  attributionUser.href = attribution.userLink + utm;
+  attributionUser.textContent = attribution.userName;
   attributionUnsplash.href = 'https://unsplash.com/' + utm;
 }
 
@@ -78,7 +78,7 @@ function setPhotoLocation(locationData) {
 
 function setPhoto(photo) {
   setPhotoView(photo.src + `&w=${screen.width}&h=${screen.height}&fit=crop`);
-  setAttribution(photo);
+  setAttribution(photo.attribution);
   setPhotoLocation(photo.location);
 }
 
@@ -95,9 +95,11 @@ function fetchPhoto() {
     .then(data => {
       return {
         src: data.urls.raw,
-        link: data.links.html,
-        userLink: data.user.links.html,
-        userName: data.user.name,
+        attribution: {
+          link: data.links.html,
+          userLink: data.user.links.html,
+          userName: data.user.name,
+        },
         location: {
           name: data.location.name,
           position: data.location.position
