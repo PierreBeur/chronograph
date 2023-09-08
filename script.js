@@ -65,6 +65,15 @@ function setPhotoLocation(locationData) {
   photoLocationPosition.classList.toggle('hidden', !validPosition);
 }
 
+function setPhoto(photo) {
+  setPhotoView(photo.src + `&w=${screen.width}&h=${screen.height}&fit=crop`);
+  attributionPhoto.href = photo.link + utm;
+  attributionUser.href = photo.userLink + utm;
+  attributionUser.textContent = photo.userName;
+  attributionUnsplash.href = 'https://unsplash.com/' + utm;
+  setPhotoLocation(photo.location);
+}
+
 // API parameters
 const collection = 1053828;
 const url = 'https://chronometer-api.deno.dev/photos/random?';
@@ -87,14 +96,7 @@ function fetchPhoto() {
         }
       };
     })
-    .then(photo => {
-      setPhotoView(photo.src + `&w=${screen.width}&h=${screen.height}&fit=crop`);
-      attributionPhoto.href = photo.link + utm;
-      attributionUser.href = photo.userLink + utm;
-      attributionUser.textContent = photo.userName;
-      attributionUnsplash.href = 'https://unsplash.com/' + utm;
-      setPhotoLocation(photo.location);
-    })
+    .then(photo => setPhoto(photo))
     .catch(error => console.error(error));
 }
 fetchPhoto();
