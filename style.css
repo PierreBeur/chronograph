@@ -163,7 +163,7 @@ body {
   font-family: 'Raleway', Arial, Helvetica, sans-serif;
 }
 
-.attribution-text {
+.footer-text {
   display: flex;
   min-height: 3rem;
   padding-bottom: .8rem;
