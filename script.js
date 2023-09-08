@@ -105,11 +105,11 @@ function fetchPhoto() {
           position: data.location.position
         }
       };
+      localStorage.setItem('currentPhoto', JSON.stringify(photo));
       setPhoto(photo);
     })
     .catch(error => console.error(error));
 }
-fetchPhoto();
 // Fetch new photo when refresh button clicked
 const refreshButton = document.querySelector('#refresh-button');
 refreshButton.addEventListener('click', fetchPhoto);
@@ -117,6 +117,10 @@ refreshButton.addEventListener('click', fetchPhoto);
 document.addEventListener('keydown', (event) => {
   if (event.key == ' ') fetchPhoto();
 });
+
+// Set photo to current photo or fetch new photo on page load
+const currentPhoto = JSON.parse(localStorage.getItem('currentPhoto'));
+currentPhoto ? setPhoto(currentPhoto) : fetchPhoto();
 
 
 // Menu
