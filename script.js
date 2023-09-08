@@ -76,10 +76,22 @@ function fetchBackground() {
   fetch(url + params)
     .then(response => response.json())
     .then(data => {
-      setBackground(data.urls.raw + `&w=${screen.width}&h=${screen.height}&fit=crop`);
-      attributionPhoto.href = data.links.html + utm;
-      attributionUser.href = data.user.links.html + utm;
-      attributionUser.textContent = data.user.name;
+      return {
+        photoSrc: data.urls.raw,
+        photoLink: data.links.html,
+        userLink: data.user.links.html,
+        userName: data.user.name,
+        location: {
+          name: data.location.name,
+          position: data.location.position
+        }
+      };
+    })
+    .then(data => {
+      setBackground(data.photoSrc + `&w=${screen.width}&h=${screen.height}&fit=crop`);
+      attributionPhoto.href = data.photoLink + utm;
+      attributionUser.href = data.userLink + utm;
+      attributionUser.textContent = data.userName;
       attributionUnsplash.href = 'https://unsplash.com/' + utm;
       setAttributionLocation(data.location);
     })
