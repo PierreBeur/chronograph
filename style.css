@@ -100,13 +100,13 @@ body {
 
 /* Background */
 
-#background {
+#photo-view-container {
   --transition-duration: 2000ms;
   --brightness: 0.8;
   filter: brightness(var(--brightness));
 }
 
-.background {
+.photo-view {
   position: absolute;
   z-index: -1;
   top: 50%;
@@ -118,11 +118,11 @@ body {
   opacity: 0;
 }
 
-.background.transition {
+.photo-view.transition {
   transition: opacity var(--transition-duration) cubic-bezier(.28,.83,.67,1);
 }
 
-.background.active {
+.photo-view.active {
   z-index: 0;
   opacity: 1;
 }

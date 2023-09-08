@@ -22,29 +22,29 @@ function updateDate() {
 updateDate();
 setInterval(updateDate, 1000);
 
-// Background
+// Photo
 
-const background = document.querySelector('#background');
-const backgrounds = background.querySelectorAll('.background');
+const photoViewContainer = document.querySelector('#photo-view-container');
+const photoViews = photoViewContainer.querySelectorAll('.photo-view');
 
-backgrounds.forEach((background, i) => {
-  background.addEventListener('load', () => {
-    backgrounds[i ? 0 : 1].classList.remove('active');
-    background.classList.add('transition');
-    background.classList.add('active');
+photoViews.forEach((photoView, i) => {
+  photoView.addEventListener('load', () => {
+    photoViews[i ? 0 : 1].classList.remove('active');
+    photoView.classList.add('transition');
+    photoView.classList.add('active');
   });
 });
 
-function setBackground(src) {
-  background.querySelector(':not(.active)').src = src;
+function setPhotoView(src) {
+  photoViewContainer.querySelector(':not(.active)').src = src;
 }
 
 function setBrightness(brightness) {
-  background.style.setProperty('--brightness', brightness);
+  photoViewContainer.style.setProperty('--brightness', brightness);
 }
 
 function setTransitionDuration(transitionDuration) {
-  background.style.setProperty('--transition-duration', transitionDuration + 'ms');
+  photoViewContainer.style.setProperty('--transition-duration', transitionDuration + 'ms');
 }
 
 // API parameters
@@ -72,7 +72,7 @@ function setAttributionLocation(locationData) {
   attributionLocationPosition.classList.toggle('hidden', !validPosition);
 }
 
-function fetchBackground() {
+function fetchPhoto() {
   fetch(url + params)
     .then(response => response.json())
     .then(data => {
@@ -88,7 +88,7 @@ function fetchBackground() {
       };
     })
     .then(data => {
-      setBackground(data.photoSrc + `&w=${screen.width}&h=${screen.height}&fit=crop`);
+      setPhotoView(data.photoSrc + `&w=${screen.width}&h=${screen.height}&fit=crop`);
       attributionPhoto.href = data.photoLink + utm;
       attributionUser.href = data.userLink + utm;
       attributionUser.textContent = data.userName;
@@ -97,13 +97,13 @@ function fetchBackground() {
     })
     .catch(error => console.error(error));
 }
-fetchBackground();
+fetchPhoto();
 // Fetch new background when refresh button clicked
 const refreshButton = document.querySelector('#refresh-button');
-refreshButton.addEventListener('click', fetchBackground);
+refreshButton.addEventListener('click', fetchPhoto);
 // Fetch new background when space key pressed
 document.addEventListener('keydown', (event) => {
-  if (event.key == ' ') fetchBackground();
+  if (event.key == ' ') fetchPhoto();
 });
 
 // Menu
