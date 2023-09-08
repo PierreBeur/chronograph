@@ -98,10 +98,10 @@ function fetchPhoto() {
     .catch(error => console.error(error));
 }
 fetchPhoto();
-// Fetch new background when refresh button clicked
+// Fetch new photo when refresh button clicked
 const refreshButton = document.querySelector('#refresh-button');
 refreshButton.addEventListener('click', fetchPhoto);
-// Fetch new background when space key pressed
+// Fetch new photo when space key pressed
 document.addEventListener('keydown', (event) => {
   if (event.key == ' ') fetchPhoto();
 });
