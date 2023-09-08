@@ -51,14 +51,21 @@ function setTransitionDuration(transitionDuration) {
   photoViewContainer.style.setProperty('--transition-duration', transitionDuration + 'ms');
 }
 
-// Photo attribution and location
+// Photo attribution
 const utm = '?utm_source=Chronometer&utm_medium=referral&utm_campaign=api-credit';
 const attributionPhoto = document.querySelector('#attribution-photo');
 const attributionUser = document.querySelector('#attribution-user');
 const attributionUnsplash = document.querySelector('#attribution-unsplash');
+function setAttribution(photo) {
+  attributionPhoto.href = photo.link + utm;
+  attributionUser.href = photo.userLink + utm;
+  attributionUser.textContent = photo.userName;
+  attributionUnsplash.href = 'https://unsplash.com/' + utm;
+}
+
+// Photo location
 const photoLocation = document.querySelector('#photo-location');
 const photoLocationPosition = document.querySelector('#photo-location-position');
-
 function setPhotoLocation(locationData) {
   const name = locationData.name;
   photoLocation.textContent = name;
@@ -71,10 +78,7 @@ function setPhotoLocation(locationData) {
 
 function setPhoto(photo) {
   setPhotoView(photo.src + `&w=${screen.width}&h=${screen.height}&fit=crop`);
-  attributionPhoto.href = photo.link + utm;
-  attributionUser.href = photo.userLink + utm;
-  attributionUser.textContent = photo.userName;
-  attributionUnsplash.href = 'https://unsplash.com/' + utm;
+  setAttribution(photo);
   setPhotoLocation(photo.location);
 }
 
