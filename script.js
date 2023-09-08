@@ -47,13 +47,6 @@ function setTransitionDuration(transitionDuration) {
   photoViewContainer.style.setProperty('--transition-duration', transitionDuration + 'ms');
 }
 
-// API parameters
-const collection = 1053828;
-const url = 'https://chronometer-api.deno.dev/photos/random?';
-const params = new URLSearchParams([
-  ['collections', collection]
-]);
-
 // Photo attribution and location
 const utm = '?utm_source=Chronometer&utm_medium=referral&utm_campaign=api-credit';
 const attributionPhoto = document.querySelector('#attribution-photo');
@@ -71,6 +64,13 @@ function setPhotoLocation(locationData) {
   photoLocationPosition.href = validPosition ? `https://www.google.com/maps/place/${latitude}%2C${longitude}` : '';
   photoLocationPosition.classList.toggle('hidden', !validPosition);
 }
+
+// API parameters
+const collection = 1053828;
+const url = 'https://chronometer-api.deno.dev/photos/random?';
+const params = new URLSearchParams([
+  ['collections', collection]
+]);
 
 function fetchPhoto() {
   fetch(url + params)
