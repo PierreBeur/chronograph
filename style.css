@@ -108,7 +108,7 @@ body {
   overflow: hidden;
 }
 
-/* Background */
+/* Photo view */
 
 #photo-view-container {
   --transition-duration: 2000ms;
@@ -175,7 +175,6 @@ body {
 
 .footer-text {
   display: flex;
-  min-height: 3rem;
   padding-bottom: .8rem;
   align-items: end;
 }
