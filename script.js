@@ -93,7 +93,7 @@ function fetchPhoto() {
   fetch(url + params)
     .then(response => response.json())
     .then(data => {
-      return {
+      const photo = {
         src: data.urls.raw,
         attribution: {
           link: data.links.html,
@@ -105,8 +105,8 @@ function fetchPhoto() {
           position: data.location.position
         }
       };
+      setPhoto(photo);
     })
-    .then(photo => setPhoto(photo))
     .catch(error => console.error(error));
 }
 fetchPhoto();
