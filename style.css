@@ -49,13 +49,16 @@ body {
 
 /* Menu */
 
+:root {
+  --menu-transition-duration: .3s;
+}
+
 #menu-wrapper {
   position: relative;
   width: 0;
   opacity: 0;
   overflow: hidden;
   --menu-open-width: 180px;
-  --menu-transition-duration: .3s;
   transition:
     width var(--menu-transition-duration) ease-out,
     opacity var(--menu-transition-duration) ease-out;
@@ -115,6 +118,16 @@ body {
   display: flex;
   padding: .9rem;
   cursor: pointer;
+}
+
+#menu-button .material-symbols-outlined {
+  font-size: 20px;
+  margin-top: 4px;
+  transition: transform var(--menu-transition-duration) ease-out;
+}
+
+#menu-button.menu-open .material-symbols-outlined {
+  transform: rotate(180deg);
 }
 
 /* Photo view */

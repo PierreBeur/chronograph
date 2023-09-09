@@ -129,6 +129,7 @@ const menuWrapper = document.querySelector('#menu-wrapper');
 const menuButton = document.querySelector('#menu-button');
 function toggleMenu() {
   menuWrapper.classList.toggle('menu-open');
+  menuButton.classList.toggle('menu-open');
 }
 // Toggle menu when menu button clicked
 menuButton.addEventListener('click', toggleMenu);
