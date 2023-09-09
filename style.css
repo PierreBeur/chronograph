@@ -108,6 +108,15 @@ body {
   overflow: hidden;
 }
 
+/* Menu Button */
+
+#menu-button {
+  position: absolute;
+  display: flex;
+  padding: 1rem;
+  cursor: pointer;
+}
+
 /* Photo view */
 
 #photo-view-container {
@@ -135,14 +144,6 @@ body {
 .photo-view.active {
   z-index: 0;
   opacity: 1;
-}
-
-/* Menu Button */
-
-#menu-button {
-  position: absolute;
-  padding: 1rem;
-  cursor: pointer;
 }
 
 /* Clock */
