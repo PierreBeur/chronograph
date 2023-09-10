@@ -23,6 +23,18 @@ updateDate();
 setInterval(updateDate, 1000);
 
 
+// Storage
+
+const ls = {
+  set(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
+  },
+  get(key) {
+    return JSON.parse(localStorage.getItem(key));
+  }
+}
+
+
 // Photo
 
 // Photo view
@@ -105,7 +117,7 @@ function fetchPhoto() {
           position: data.location.position
         }
       };
-      localStorage.setItem('currentPhoto', JSON.stringify(photo));
+      ls.set('currentPhoto', photo);
       setPhoto(photo);
     })
     .catch(error => console.error(error));
@@ -119,8 +131,8 @@ document.addEventListener('keydown', (event) => {
 });
 
 // Set photo to current photo or fetch new photo on page load
-const currentPhoto = JSON.parse(localStorage.getItem('currentPhoto'));
 currentPhoto ? setPhoto(currentPhoto) : fetchPhoto();
+const currentPhoto = ls.get('currentPhoto');
 
 
 // Menu
