@@ -102,10 +102,10 @@ const params = new URLSearchParams([
 ]);
 
 function fetchPhoto() {
-  fetch(url + params)
+  return fetch(url + params)
     .then(response => response.json())
     .then(data => {
-      const photo = {
+      return {
         src: data.urls.raw,
         attribution: {
           link: data.links.html,
@@ -117,22 +117,27 @@ function fetchPhoto() {
           position: data.location.position
         }
       };
-      ls.set('currentPhoto', photo);
-      setPhoto(photo);
     })
     .catch(error => console.error(error));
 }
-// Fetch new photo when refresh button clicked
+
+async function newPhoto() {
+  const photo = await fetchPhoto();
+  ls.set('currentPhoto', photo);
+  setPhoto(photo);
+}
+
+// New photo when refresh button clicked
 const refreshButton = document.querySelector('#refresh-button');
-refreshButton.addEventListener('click', fetchPhoto);
-// Fetch new photo when space key pressed
+refreshButton.addEventListener('click', newPhoto);
+// New photo when space key pressed
 document.addEventListener('keydown', (event) => {
-  if (event.key == ' ') fetchPhoto();
+  if (event.key == ' ') newPhoto();
 });
 
-// Set photo to current photo or fetch new photo on page load
-currentPhoto ? setPhoto(currentPhoto) : fetchPhoto();
+// Set photo to current photo or new photo on page load
 const currentPhoto = ls.get('currentPhoto');
+currentPhoto ? setPhoto(currentPhoto) : newPhoto();
 
 
 // Menu
