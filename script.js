@@ -47,7 +47,6 @@ const db = {
   async putPhoto(photo) {
     const id = await (await dbp).put('photo-history', photo);
     ls.set('currentPhotoID', id);
-    console.log(id);
   },
   async getPhoto(offset) {
     const id = ls.get('currentPhotoID') ?? 0;
