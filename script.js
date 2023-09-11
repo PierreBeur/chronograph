@@ -110,6 +110,7 @@ function setPhotoLocation(locationData) {
 }
 
 function setPhoto(photo) {
+  db.putPhoto(photo);
   setPhotoView(photo.src + `&w=${screen.width}&h=${screen.height}&fit=crop`);
   setAttribution(photo.attribution);
   setPhotoLocation(photo.location);
@@ -144,10 +145,8 @@ function fetchPhoto() {
 
 async function newPhoto() {
   const photo = await fetchPhoto();
-  ls.set('currentPhoto', photo);
-  setPhoto(photo);
+  if (photo) setPhoto(photo);
 }
-
 // New photo when refresh button clicked
 const refreshButton = document.querySelector('#refresh-button');
 refreshButton.addEventListener('click', newPhoto);
@@ -156,9 +155,34 @@ document.addEventListener('keydown', (event) => {
   if (event.key == ' ') newPhoto();
 });
 
+async function prevPhoto() {
+  const photo = await db.getPhoto(-1);
+  if (photo) setPhoto(photo);
+}
+// Get prev photo when prev photo button clicked
+const photoPrevButton = document.querySelector('#photo-prev-button');
+photoPrevButton.addEventListener('click', prevPhoto);
+// Get prev photo when left arrow key pressed
+document.addEventListener('keydown', (event) => {
+  if (event.key == 'ArrowLeft') prevPhoto();
+});
+
+async function nextPhoto() {
+  setPhoto(await db.getPhoto(1) ?? await fetchPhoto());
+}
+// Get next photo when next photo button clicked
+const photoNextButton = document.querySelector('#photo-next-button');
+photoNextButton.addEventListener('click', nextPhoto);
+// Get prev photo when right arrow key pressed
+document.addEventListener('keydown', (event) => {
+  if (event.key == 'ArrowRight') nextPhoto();
+});
+
 // Set photo to current photo or new photo on page load
-const currentPhoto = ls.get('currentPhoto');
-currentPhoto ? setPhoto(currentPhoto) : newPhoto();
+async function currentPhoto() {
+  setPhoto(await db.getPhoto(0) ?? await fetchPhoto());
+}
+currentPhoto();
 
 
 // Menu
