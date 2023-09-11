@@ -34,6 +34,27 @@ const ls = {
   }
 }
 
+const dbp = idb.openDB('chronometer-photo-history', 1, {
+  upgrade(db) {
+    db.createObjectStore('photo-history', {
+      keyPath: 'id',
+      autoIncrement: true
+    });
+  }
+});
+
+const db = {
+  async putPhoto(photo) {
+    const id = await (await dbp).put('photo-history', photo);
+    ls.set('currentPhotoID', id);
+    console.log(id);
+  },
+  async getPhoto(offset) {
+    const id = ls.get('currentPhotoID') ?? 0;
+    return await (await dbp).get('photo-history', id + offset);
+  }
+}
+
 
 // Photo
 
