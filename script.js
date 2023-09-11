@@ -131,7 +131,7 @@ function fetchPhoto() {
         attribution: {
           link: data.links.html,
           userLink: data.user.links.html,
-          userName: data.user.name,
+          userName: data.user.name
         },
         location: {
           name: data.location.name,
@@ -150,7 +150,7 @@ async function newPhoto() {
 const refreshButton = document.querySelector('#refresh-button');
 refreshButton.addEventListener('click', newPhoto);
 // New photo when space key pressed
-document.addEventListener('keydown', (event) => {
+document.addEventListener('keydown', event => {
   if (event.key == ' ') newPhoto();
 });
 
@@ -162,7 +162,7 @@ async function prevPhoto() {
 const photoPrevButton = document.querySelector('#photo-prev-button');
 photoPrevButton.addEventListener('click', prevPhoto);
 // Get prev photo when left arrow key pressed
-document.addEventListener('keydown', (event) => {
+document.addEventListener('keydown', event => {
   if (event.key == 'ArrowLeft') prevPhoto();
 });
 
@@ -173,7 +173,7 @@ async function nextPhoto() {
 const photoNextButton = document.querySelector('#photo-next-button');
 photoNextButton.addEventListener('click', nextPhoto);
 // Get prev photo when right arrow key pressed
-document.addEventListener('keydown', (event) => {
+document.addEventListener('keydown', event => {
   if (event.key == 'ArrowRight') nextPhoto();
 });
 
@@ -195,6 +195,6 @@ function toggleMenu() {
 // Toggle menu when menu button clicked
 menuButton.addEventListener('click', toggleMenu);
 // Toggle menu when escape key pressed
-document.addEventListener('keydown', (event) => {
+document.addEventListener('keydown', event => {
   if (event.key == 'Escape') toggleMenu();
 });
