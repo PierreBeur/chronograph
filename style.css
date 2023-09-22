@@ -147,7 +147,7 @@ body {
 
 #photo-view-container {
   --transition-duration: 2000ms;
-  --brightness: 0.8;
+  --brightness: .8;
   filter: brightness(var(--brightness));
 }
 
@@ -164,7 +164,7 @@ body {
 }
 
 .photo-view.transition {
-  transition: opacity var(--transition-duration) cubic-bezier(.28,.83,.67,1);
+  transition: opacity var(--transition-duration) cubic-bezier(.28, .83, .67, 1);
 }
 
 .photo-view.active {
