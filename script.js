@@ -198,3 +198,14 @@ menuButton.addEventListener('click', toggleMenu);
 document.addEventListener('keydown', event => {
   if (event.key == 'Escape') toggleMenu();
 });
+
+// Menu Options
+
+// Photo
+
+// Brightness
+
+const brightness = document.querySelector('#brightness');
+brightness.addEventListener('input', () => {
+  setBrightness(brightness.value);
+});
