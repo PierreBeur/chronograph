@@ -76,6 +76,7 @@ function setPhotoView(src) {
 }
 
 function setBrightness(brightness) {
+  ls.set('photoBrightness', brightness);
   photoViewContainer.style.setProperty('--brightness', brightness);
 }
 
@@ -207,5 +208,7 @@ document.addEventListener('keydown', event => {
 
 const brightness = document.querySelector('#brightness');
 brightness.addEventListener('input', () => {
-  setBrightness(brightness.value);
+  setBrightness(parseFloat(brightness.value));
 });
+brightness.value = ls.get('photoBrightness') ?? .8
+brightness.dispatchEvent(new Event('input'));
