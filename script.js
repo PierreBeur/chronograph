@@ -116,11 +116,17 @@ function setPhoto(photo) {
   setPhotoLocation(photo.location);
 }
 
-// API parameters
-const collection = 1053828;
-const url = 'https://chronometer-api.deno.dev/photos/random?';
+function setCollection(collection) {
+  ls.set('photoCollection', collection);
+}
 
+function getCollection() {
+  return ls.get('photoCollection') ?? 'fYpR_W_NzKA';
+}
+
+const url = 'https://chronometer-api.deno.dev/photos/random?';
 function fetchPhoto() {
+  const collection = getCollection();
   const params = new URLSearchParams([
     ['collections', collection]
   ]);
@@ -203,6 +209,15 @@ document.addEventListener('keydown', event => {
 // Menu Options
 
 // Photo
+
+// Collection
+
+// const collection = document.querySelector('#collection');
+// collection.addEventListener('input', () => {
+//   setCollection(collection);
+// });
+// collection.value = getCollection();
+// collection.dispatchEvent(new Event('input'));
 
 // Brightness
 

@@ -81,9 +81,11 @@ body {
 }
 
 #menu-title {
+  /* align-items: center; */
   font-size: 1.5rem;
   line-height: 100%;
   text-align: center;
+  /* border-bottom: 1px solid #333; */
 }
 
 #menu {
@@ -94,6 +96,8 @@ body {
   font-family: 'Baloo 2';
   flex-grow: 1;
   line-height: 100%;
+  /* align-items: center;
+  text-align: center; */
 }
 
 .menu-section {
